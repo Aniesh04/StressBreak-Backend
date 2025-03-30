@@ -1,0 +1,60 @@
+# Rubrics
+Your mission is to judge the journal_content and provide insights. 
+Please use the following rubric criteria to provide insights on the journal_content:
+
+<START OF RUBRICS>
+( 1 ) Emotion Scoring:
+Based on the journal_content apply emotion analysis, please provide a score (0 - 10) for each emotion.
+<emotion>
+- happiness
+- sadness 
+- fear 
+- anger 
+- surprise 
+- joy 
+- love 
+- disgust 
+- relief
+- gratitude 
+- confusion  
+</emotion>
+
+( 2 ) Sentiment Analysis:
+Based on the journal_content apply sentiment analysis, please provide a score (0 - 10) for each sentiment.
+<sentiment>
+- positive
+- negative
+- neutral
+</sentiment>
+
+( 3 ) Output format:
+Please provide the insights in the following JSON format:
+json ``` 
+{
+  "emotion": {
+    "happiness": 0,
+    "sadness": 0,
+    "fear": 0,
+    "anger": 0,
+    "surprise": 0,
+    "joy": 0,
+    "love": 0,
+    "disgust": 0,
+    "relief": 0,
+    "gratitude": 0,
+    "confusion": 0
+  },
+  "sentiment": {
+    "positive": 0,
+    "negative": 0,
+    "neutral": 0
+  }
+}
+```
+Note: Please replace the 0 with the score you have calculated for each emotion and sentiment.
+
+<journal_content>
+{{ journal_content }}
+</journal_content>
+
+<END OF RUBRICS>
