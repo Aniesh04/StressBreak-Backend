@@ -72,7 +72,6 @@ class Journal(BasicModel):
     
     journal_content = Column(Text, nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    llm_response = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # Sentiment scores

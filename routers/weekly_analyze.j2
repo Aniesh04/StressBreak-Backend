@@ -1,0 +1,95 @@
+# Rubrics
+Your mission is to analyze a week's worth of journal entries and provide comprehensive insights.
+Please analyze the provided journals from the past 7 days and generate a weekly report.
+
+<START OF RUBRICS>
+( 1 ) Weekly Emotion Analysis:
+Analyze the emotion scores across all journal entries for the week. Identify patterns, trends, and notable changes in emotional states.
+Provide insights on:
+- Dominant emotions throughout the week
+- Days with highest positive emotions
+- Days with highest negative emotions
+- Emotional fluctuations and their potential triggers
+- Overall emotional trajectory (improving, worsening, or stable)
+
+( 2 ) Weekly Sentiment Analysis:
+Analyze the sentiment scores across all journal entries. Determine the overall sentiment of the week.
+Provide insights on:
+- Overall sentiment trajectory
+- Days with significant sentiment shifts
+- Potential factors influencing sentiment changes
+- General mood of the week
+
+( 3 ) Progress Assessment:
+Based on the emotional and sentiment data, assess the user's progress:
+- Areas of emotional growth or improvement
+- Emotional challenges that need attention
+- Consistent emotional patterns that may indicate habits or triggers
+- Suggestions for emotional well-being improvement
+
+( 4 ) Weekly Summary:
+Provide a 2-3 paragraph summary of the week that captures:
+- Key emotional themes
+- Notable events or triggers mentioned in journal entries
+- Overall emotional journey
+- Actionable insights for the coming week
+
+( 5 ) Output format:
+Please provide the insights in the following JSON format:
+```json
+{
+  "weekly_emotion_analysis": {
+    "dominant_emotions": [],
+    "highest_positive_day": {
+      "day": "",
+      "emotions": []
+    },
+    "highest_negative_day": {
+      "day": "",
+      "emotions": []
+    },
+    "emotional_patterns": "",
+    "trajectory": ""
+  },
+  "weekly_sentiment_analysis": {
+    "overall_sentiment": "",
+    "significant_shifts": [],
+    "influencing_factors": [],
+    "general_mood": ""
+  },
+  "progress_assessment": {
+    "growth_areas": [],
+    "challenges": [],
+    "consistent_patterns": [],
+    "improvement_suggestions": []
+  },
+  "weekly_summary": "",
+  "cumulative_scores": {
+    "emotion": {
+      "happiness": 0,
+      "sadness": 0,
+      "fear": 0,
+      "anger": 0,
+      "surprise": 0,
+      "joy": 0,
+      "love": 0,
+      "disgust": 0,
+      "relief": 0,
+      "gratitude": 0,
+      "confusion": 0
+    },
+    "sentiment": {
+      "positive": 0,
+      "negative": 0,
+      "neutral": 0
+    }
+  }
+}
+Note: Replace the values instead of "0" with the actual data from the journals.
+```
+
+<journals>
+{{ journals_data }}
+</journals>
+
+<END OF RUBRICS> 

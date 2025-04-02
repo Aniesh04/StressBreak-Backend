@@ -15,3 +15,5 @@ requests==2.31.0
 pytest==7.4.3
 jinja2
 google-genai
+matplotlib
+seaborn
