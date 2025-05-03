@@ -14,3 +14,4 @@ class UserRole(enum.Enum):
     EMPLOYEE = "employee"
     ENTREPRENEUR = "entrepreneur"
     PARENT = "parent"
+    ADMIN = "admin"
