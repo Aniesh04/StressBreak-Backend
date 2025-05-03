@@ -5,13 +5,16 @@ from datetime import date, timedelta
 from fastapi.responses import JSONResponse
 
 from db.database import get_db
+from db.models import User # Import User model
 from .utils import (
     get_user_journals_for_week, 
     format_journal_data_for_weekly_analysis,
     generate_weekly_analysis,
     generate_visualizations,
-    VISUALIZATION_DIR
+    VISUALIZATION_DIR,
+    get_latest_visualization_paths
 )
+from utils.security import get_current_user # Import the dependency
 
 # Create router with prefix and tags defined here
 router = APIRouter(
@@ -20,14 +23,16 @@ router = APIRouter(
 )
 
 
-@router.get("/weekly-analysis/{user_id}", status_code=status.HTTP_200_OK)
+@router.get("/weekly-analysis", status_code=status.HTTP_200_OK) # Removed {user_id} from path
 async def get_weekly_analysis(
-    user_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user) # Add dependency
 ):
     """
-    Generate a weekly analysis report based on the user's journal entries from the past 7 days
+    Generate a weekly analysis report based on the authenticated user's journal entries from the past 7 days
     """
+    user_id = current_user.id # Use the authenticated user's ID
+    
     # Get journal entries for the past 7 days
     journals = get_user_journals_for_week(db, user_id)
     
@@ -46,14 +51,16 @@ async def get_weekly_analysis(
     return analysis
 
 
-@router.get("/weekly-visualizations/{user_id}", status_code=status.HTTP_200_OK)
+@router.get("/weekly-visualizations", status_code=status.HTTP_200_OK) # Removed {user_id} from path
 async def get_weekly_visualizations(
-    user_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user) # Add dependency
 ):
     """
-    Generate visualizations for the user's journal entries from the past 7 days
+    Generate visualizations for the authenticated user's journal entries from the past 7 days
     """
+    user_id = current_user.id # Use the authenticated user's ID
+
     # Get journal entries for the past 7 days
     journals = get_user_journals_for_week(db, user_id)
     
@@ -96,14 +103,16 @@ async def get_weekly_visualizations(
     return JSONResponse(content=visualizations)
 
 
-@router.get("/combined-weekly-report/{user_id}", status_code=status.HTTP_200_OK)
+@router.get("/combined-weekly-report") # Removed {user_id} from path
 async def get_combined_weekly_report(
-    user_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user) # Add dependency
 ):
     """
-    Generate a combined weekly report with analysis and visualizations
+    Generate a combined weekly report with analysis and visualizations for the authenticated user
     """
+    user_id = current_user.id # Use the authenticated user's ID
+
     # Get journal entries for the past 7 days
     journals = get_user_journals_for_week(db, user_id)
     

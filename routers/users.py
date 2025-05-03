@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from db.models import User
 from db.database import get_db
-from utils.security import verify_password, create_access_token, get_password_hash
+from utils.security import verify_password, create_access_token, get_password_hash, get_current_user
 from schemas.auth import Token, LoginRequest
 from datetime import timedelta
 from fastapi.security import OAuth2PasswordRequestForm
@@ -70,3 +70,8 @@ async def login(form_data: LoginRequest, db: Session = Depends(get_db)):
         token_type="bearer",
         role_id=user.role_id
     )
+
+
+@router.get("/me", response_model=User) # Use a Pydantic schema here eventually
+async def read_users_me(current_user: User = Depends(get_current_user)):
+    return current_user
