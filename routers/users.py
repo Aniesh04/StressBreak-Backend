@@ -6,6 +6,7 @@ from utils.security import verify_password, create_access_token, get_password_ha
 from schemas.auth import Token, LoginRequest
 from datetime import timedelta
 from fastapi.security import OAuth2PasswordRequestForm
+from schemas.users import UserOut
 
 # Create router with prefix and tags defined here
 router = APIRouter(
@@ -72,6 +73,6 @@ async def login(form_data: LoginRequest, db: Session = Depends(get_db)):
     )
 
 
-@router.get("/me", response_model=User) # Use a Pydantic schema here eventually
+@router.get("/me", response_model=UserOut) # Use a Pydantic schema here eventually
 async def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user

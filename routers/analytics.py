@@ -11,8 +11,6 @@ from .utils import (
     format_journal_data_for_weekly_analysis,
     generate_weekly_analysis,
     generate_visualizations,
-    VISUALIZATION_DIR,
-    get_latest_visualization_paths
 )
 from utils.security import get_current_user # Import the dependency
 
