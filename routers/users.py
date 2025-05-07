@@ -69,7 +69,8 @@ async def login(form_data: LoginRequest, db: Session = Depends(get_db)):
     return Token(
         access_token=access_token,
         token_type="bearer",
-        role_id=user.role_id
+        role_id=user.role_id,
+        user_name=user.name
     )
 
 
