@@ -106,7 +106,8 @@ class WeeklyReport(BasicModel):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     from_date = Column(Date, nullable=False)
     to_date = Column(Date, nullable=False)
-    report_response = Column(Text, nullable=True)
+    report_response = Column(Text, nullable=True) # Stores the LLM analysis report
+    visualizations = Column(Text, nullable=True) # Stores the JSON string of visualization image strings
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # Relationships

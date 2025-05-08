@@ -14,6 +14,7 @@ router = APIRouter(
 
 @router.post("/analyze", status_code=status.HTTP_200_OK)
 async def analyze_journal_entry(
+    # user_id: int,
     entry: str, 
     db: Session = Depends(get_db), 
     # current_user: User = Depends(get_current_user)
@@ -26,7 +27,8 @@ async def analyze_journal_entry(
     
     # Save the analysis result to the database
     db.add(Journal(
-        user_id=current_user.id,
+        # user_id=current_user.id,
+        user_id=1,
         journal_content=entry,
         positive_score=analysis_result['sentiment']['positive'],
         negative_score=analysis_result['sentiment']['negative'],
